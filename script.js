@@ -52,10 +52,3 @@ function buildLibrary() {
 
 buildLibrary();
 
-console.log(Library.printBooks());
-
-const rmUUID = Library.books[2].id;
-
-Library.removeBook(rmUUID);
-
-console.log(Library.printBooks());

@@ -1,3 +1,83 @@
+:root {
+    --color-main-background: #232323;
+    --color-font-primary: #F3F3F3;
+    --color-btn-bg: #313131;
+    --color-btn-bg-hover: #424242;
+    --color-btn-bg-active: #262626;
+}
+
+body {
+    background: var(--color-main-background);
+    color: var(--color-font-primary);
+}
+
 h1 {
-    color: rebeccapurple;
+    text-align: center;
+    margin-block: 15px;
+}
+
+.main-container {
+    width: 60vw;
+    margin-inline: 20vw;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-font-primary);
+    border-radius: 15px;
+}
+
+
+.control-container {
+    display: flex;
+    padding-inline-end: 30px;
+    padding-block-start: 30px;
+    justify-content: flex-end;
+}
+
+.library-container {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 30px;
+}
+
+.book-card {
+    border: 1px solid var(--color-font-primary);
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    user-select: none;
+}
+
+.page-read-container,
+.book-control {
+    display: flex;
+    justify-content: space-between;
+}
+
+.book-control {
+    margin-block-start: 10px;
+}
+
+button {
+    outline: none;
+    color: var(--color-font-primary);
+    padding-inline: 12px;
+    padding-block: 5px;
+    background: var(--color-btn-bg);
+    transition: 0.2s ease;
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: var(--color-btn-bg-hover);
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.95);
+    background: var(--color-btn-bg-active)
 }
