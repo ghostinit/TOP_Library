@@ -5,6 +5,7 @@ const libContainer = document.querySelector(".library-container");
 const openBtn = document.querySelector(".btn-new-book");
 const modal = document.querySelector("#modal");
 const closeBtn = modal.querySelector('.close-button');
+const inputTitle = document.querySelector('#book-title');
 
 
 // Book Object
@@ -117,6 +118,7 @@ document.addEventListener('click', (event) => {
 // Modal Logic
 openBtn.addEventListener('click', () => {
     modal.classList.add('show');
+    inputTitle.focus();
 });
 
 closeBtn.addEventListener('click', () => {

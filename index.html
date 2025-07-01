@@ -42,14 +42,35 @@
             <span class="close-button" role="button" tabindex="0" aria-label="Close">&times;</span>
             <h2 id="modal-title">Add Book to Library</h2>
             <form id="add-book-form" action="" method="get">
+
+                <!-- BOOK TITLE INPUT -->
                 <div class="form-row">
                     <label for="book-title">Title</label>
-
-
                     <input type="text" id="book-title" name="booktitle" aria-describedby="book-title-help" required
                         autocomplete="off">
                     <small id="book-title-help">Enter the full book title</small>
                 </div>
+
+                <!-- BOOK AUTHOR INPUT -->
+                <div class="form-row">
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="bookauthor" aria-describedby="book-author-help" required
+                        autocomplete="off">
+                    <small id="book-author-help">Enter the authors name</small>
+                </div>
+
+                <!-- PAGE COUNT INPUT -->
+                <div class="form-row">
+                    <label for="page-count">Pages</label>
+                    <input type="number" id="page-count" name="pagecount" aria-describedby="page-count-help" required
+                        autocomplete="off">
+                    <small id="page-count-help">Enter the number of pages</small>
+                </div>
+
+                <div class="submit-button-flex">
+                    <button id="submit-book-button" type="submit" aria-label="Add Book">Add</button>
+                </div>
+
             </form>
         </div>
     </div>
