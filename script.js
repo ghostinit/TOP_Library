@@ -6,6 +6,8 @@ const openBtn = document.querySelector(".btn-new-book");
 const modal = document.querySelector("#modal");
 const closeBtn = modal.querySelector('.close-button');
 const inputTitle = document.querySelector('#book-title');
+const addBookButton = document.querySelector('#submit-book-button');
+const newBookForm = document.querySelector('#add-book-form');
 
 
 // Book Object
@@ -129,4 +131,24 @@ modal.addEventListener('click', (event) => {
     if (event.target === modal) {
         modal.classList.remove('show');
     }
+});
+
+addBookButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const isValid = newBookForm.reportValidity();
+    if (isValid) {
+        modal.classList.remove('show');
+        const newTitle = newBookForm.querySelector('#book-title').value;
+        newBookForm.querySelector('#book-title').value = "";
+
+        const newAuthor = newBookForm.querySelector('#book-author').value;
+        newBookForm.querySelector('#book-author').value = "";
+
+        const newPageCount = newBookForm.querySelector('#page-count').value;
+        newBookForm.querySelector('#page-count').value = "";
+
+        Library.addBook(newTitle, newAuthor, newPageCount);
+        Library.populateCardContainer();
+    }
+
 });
