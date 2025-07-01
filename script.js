@@ -1,6 +1,11 @@
 // Variables
 const libContainer = document.querySelector(".library-container");
 
+// Modal Vars
+const openBtn = document.querySelector(".btn-new-book");
+const modal = document.querySelector("#modal");
+const closeBtn = modal.querySelector('.close-button');
+
 
 // Book Object
 function Book(title, author, pageCount) {
@@ -23,17 +28,17 @@ function Book(title, author, pageCount) {
 
     this.getHTML = function () {
         return `
-        <div data-cUUID="${this.id}" class="book-card">
-            <h3 class="book-title">${this.title}</h3>
-            <h4 class="book-author">By ${this.author}</h4>
+        <div data-cUUID="${this.id}" class="book-card" role="group" aria-labelledby="title-${this.id}">
+            <h2 class="book-title" id="title-${this.id}">${this.title}</h2>
+            <h3 class="book-author">By ${this.author}</h3>
             <div class="page-read-container">
                 <p class="page-count">${this.pageCount} pages</p>
-                <p class="had-read">${this.read ? "Read" : "Unread"}</p>
+                <p class="has-read" aria-live="polite">${this.read ? "Read" : "Unread"}</p>
             </div>
 
             <div class="book-control">
-                <button class="remove-book" type="button" id="btn-delete">Delete Book</button>
-                <button class="mark-read" type="button" id="btn-mark-read">Toggle Read</button>
+                <button class="btn-remove-book" type="button" aria-label="Delete ${this.title}">Delete Book</button>
+                <button class="btn-mark-read" type="button" aria-label="Toggle read status for ${this.title}">Toggle Read</button>
             </div>
         </div>
          `
@@ -91,14 +96,14 @@ Library.populateCardContainer();
 
 // Event listeners for 'toggle read' and 'delete' buttons on each book
 document.addEventListener('click', (event) => {
-    if (event.target.closest('#btn-mark-read')) {
+    if (event.target.closest('.btn-mark-read')) {
         const card = event.target.closest('.book-card');
         if (!card) return;
         const id = card.dataset.cuuid;
         Library.toggleBookRead(id);
         Library.populateCardContainer();
 
-    } else if (event.target.closest('#btn-delete')) {
+    } else if (event.target.closest('.btn-remove-book')) {
         console.log("Delete clicked");
         const card = event.target.closest('.book-card');
         if (!card) return;
@@ -109,3 +114,17 @@ document.addEventListener('click', (event) => {
 })
 
 
+// Modal Logic
+openBtn.addEventListener('click', () => {
+    modal.classList.add('show');
+});
+
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+});
+
+modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.classList.remove('show');
+    }
+});

@@ -11,8 +11,8 @@
 
 :root {
     --color-main-background: hsl(22, 97%, 14%);
-    --color-card-background: hsl(36, 97%, 14%);
-    --color-font-primary: #F3F3F3;
+    --color-card-background: #462b01;
+    --color-font-primary: #f3f3f3;
     --color-btn-bg: hsl(36, 100%, 21%);
     --color-btn-bg-hover: hsl(36, 100%, 26%);
     --color-btn-bg-active: hsl(36, 100%, 16%);
@@ -20,7 +20,7 @@
 }
 
 body {
-    background: url("images/page_background.jpg");
+    background: url("images/background2.png");
     color: var(--color-font-primary);
 }
 
@@ -101,4 +101,48 @@ button:hover {
 button:active {
     transform: scale(0.95);
     background: var(--color-btn-bg-active)
+}
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content {
+    background: var(--color-main-background);
+    color: var(--color-font-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--color-font-primary);
+    position: relative;
+    max-width: 400px;
+    width: 80%;
+    box-shadow: 0 0 10px 10px var(--color-card-shadow);
+
+}
+
+.modal.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.close-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

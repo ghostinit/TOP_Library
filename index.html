@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="icon" href="favicon.png" type="image/png">
     <title>My Library</title>
 </head>
 
@@ -18,23 +19,30 @@
                 <button class="btn-new-book" type="button" aria-label="Add New Book">Add</button>
             </div>
             <div class="library-container">
-                <div data-cUUID="lksjdf-3knks-skdnf2" class="book-card">
-                    <h3 class="book-title">Adventures of Doogie McHowzer</h3>
-                    <h4 class="book-author">By Steve McSteverson</h4>
+                <!-- <div data-cUUID="lksjdf-3knks-skdnf2" class="book-card">
+                    <h2 class="book-title">Adventures of Doogie McHowzer</h2>
+                    <h3 class="book-author">By Steve McSteverson</h3>
                     <div class="page-read-container">
                         <p class="page-count">621 pages</p>
-                        <p class="had-read">Unread</p>
+                        <p class="has-read">Unread</p>
                     </div>
 
                     <div class="book-control">
                         <button class="remove-book">Delete Book</button>
                         <button class="mark-read">Mark Read</button>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>
     </main>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p>This is a modal. Hello there.</p>
+        </div>
+    </div>
 </body>
 
 </html>
