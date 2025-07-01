@@ -4,6 +4,7 @@
     --color-btn-bg: #313131;
     --color-btn-bg-hover: #424242;
     --color-btn-bg-active: #262626;
+    --color-card-shadow: #505050;
 }
 
 body {
@@ -49,6 +50,10 @@ h1 {
     gap: 7px;
 
     user-select: none;
+}
+
+.book-card:hover {
+    box-shadow: 0 0 10px 10px var(--color-card-shadow);
 }
 
 .page-read-container,
