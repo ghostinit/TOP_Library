@@ -146,3 +146,26 @@ button:active {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+.modal-content h2 {
+    text-align: center;
+    margin-block-end: 10px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row label {
+    font-size: 1.15em;
+}
+
+.form-row input {
+    padding-inline: 10px;
+    padding-block: 2px;
+    color: var(--color-font-primary);
+    background: var(--color-card-background);
+    border: 1px solid var(--color-font-primary);
+    border-radius: 8px;
+}
