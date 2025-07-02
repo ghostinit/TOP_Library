@@ -8,6 +8,9 @@ const closeBtn = modal.querySelector('.close-button');
 const inputTitle = document.querySelector('#book-title');
 const addBookButton = document.querySelector('#submit-book-button');
 const newBookForm = document.querySelector('#add-book-form');
+const booksInLibraryValue = document.querySelector('#books-in-lib');
+const booksReadValue = document.querySelector('#books-read');
+const pagesReadValue = document.querySelector('#pages-read');
 
 
 // Book Object
@@ -81,8 +84,12 @@ function Book(title, author, pageCount) {
 // Library Object
 const Library = {
     books: [],
+    pagesRead: 0,
+    booksRead: 0,
+    booksInLibrary: 0,
     addBook: function (title, author, pageCount) {
         this.books.push(new Book(title, author, pageCount));
+        this.updateLibStats();
     },
     printBooks: function () {
         this.books.forEach((book) => {
@@ -92,12 +99,15 @@ const Library = {
     removeBook: function (UUID) {
         const idx = this.getIndexById(UUID);
         this.books.splice(idx, 1);
+        this.updateLibStats();
     },
     getIndexById: function (UUID) {
         return this.books.findIndex(book => book.id === UUID);
     },
     toggleBookRead: function (UUID) {
-        return this.books[this.getIndexById(UUID)].toggleRead();
+        const hasRead = this.books[this.getIndexById(UUID)].toggleRead();
+        this.updateLibStats();
+        return hasRead;
     },
     populateCardContainer: function () {
         libContainer.innerHTML = "";
@@ -105,6 +115,17 @@ const Library = {
             const html = book.getHTML();
             libContainer.insertAdjacentHTML("beforeend", html);
         });
+    },
+    updateLibStats: function () {
+        this.booksInLibrary = this.books.length;
+        this.booksRead = 0;
+        this.pagesRead = 0;
+        this.books.forEach((book) => {
+            if (book.hasRead()) {
+                this.booksRead += 1;
+                this.pagesRead += book.pageCount;
+            }
+        })
     }
 
 }
@@ -122,9 +143,16 @@ function buildLibrary() {
     })
 }
 
+function updateStats() {
+    booksInLibraryValue.textContent = Library.booksInLibrary;
+    booksReadValue.textContent = Library.booksRead;
+    pagesReadValue.textContent = Library.pagesRead;
+}
+
 // Populate the page with some books
 buildLibrary();
 Library.populateCardContainer();
+updateStats();
 
 // Event listeners for 'toggle read' and 'delete' buttons on each book
 document.addEventListener('click', (event) => {
@@ -143,7 +171,7 @@ document.addEventListener('click', (event) => {
             readIcon.classList.remove('icon-visible');
             readIcon.classList.add('icon-hidden');
         }
-        // Library.populateCardContainer();
+        updateStats();
 
     } else if (event.target.closest('.btn-remove-book')) {
         console.log("Delete clicked");
@@ -152,6 +180,7 @@ document.addEventListener('click', (event) => {
         const id = card.dataset.cuuid;
         Library.removeBook(id);
         Library.populateCardContainer();
+        updateStats();
     }
 })
 
@@ -188,6 +217,7 @@ addBookButton.addEventListener('click', (event) => {
 
         Library.addBook(newTitle, newAuthor, newPageCount);
         Library.populateCardContainer();
+        updateStats();
     }
 
 });

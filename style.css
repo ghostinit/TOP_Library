@@ -47,10 +47,32 @@ body {
 
 .control-container {
     display: flex;
-    padding-inline-end: 30px;
+    padding-inline: 30px;
     padding-block-start: 30px;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
+
+.library-stats {
+    display: flex;
+    gap: 30px;
+}
+
+.book-stat {
+    display: flex;
+    gap: 1ch;
+    align-items: center;
+}
+
+.book-stat-title {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.book-stat-value {
+    font-size: 1.25em;
+}
+
+
 
 .library-container {
     padding: 30px;
