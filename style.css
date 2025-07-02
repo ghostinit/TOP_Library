@@ -8,7 +8,7 @@
     font-display: swap;
 }
 
-
+/* VARIABLES */
 :root {
     --color-main-background: hsl(22, 97%, 14%);
     --color-card-background: #462b01;
@@ -21,10 +21,36 @@
     --shadow-common: 0 0 10px 10px var(--color-card-shadow);
 }
 
+/* ================ ELEMENT STYLING =================== */
 body {
     background: url("images/background2.png");
     color: var(--color-font-primary);
 }
+
+/* Button styling */
+
+button {
+    outline: none;
+    color: var(--color-font-primary);
+    padding-inline: 12px;
+    padding-block: 5px;
+    background: var(--color-btn-bg);
+    transition: 0.2s ease;
+    border-radius: 10px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: var(--color-btn-bg-hover);
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(0.95);
+    background: var(--color-btn-bg-active)
+}
+
+/* =================== OVERALL LIBRARY CONTAINER STYLING ========================== */
 
 #page-title {
     text-align: center;
@@ -52,6 +78,8 @@ body {
     justify-content: space-between;
 }
 
+/* ====================== LIBRARY STATISTICS STYLING ===================================== */
+
 .library-stats {
     display: flex;
     gap: 30px;
@@ -72,7 +100,63 @@ body {
     font-size: 1.25em;
 }
 
+/* ===================== SORT AND SEARCH STYLING ====================================== */
 
+.sort-search-container {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 30px;
+    margin-block-start: 30px;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.sort-container-outer,
+.search-container-outer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid var(--color-font-primary);
+    border-radius: 15px;
+    flex: 1;
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sort-type-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-icon {
+    height: 1.1em;
+    width: auto;
+}
+
+#search-input {
+    flex: 1;
+}
+
+/* ======================= LIBRARY CARD CONTAINER AND CARD STYLING ======================= */
 
 .library-container {
     padding: 30px;
@@ -101,6 +185,8 @@ body {
     justify-content: space-between;
 }
 
+/* HAS READ ICON */
+
 .has-read-icon {
     transition: 0.3s ease;
     width: 2rem;
@@ -117,11 +203,14 @@ body {
     opacity: 1;
 }
 
+/* DELETE BOOK ICON */
 .delete-book-icon {
     height: 1.5rem;
     width: auto;
 }
 
+
+/* BODY AND TITLE STYLING */
 .page-read-container,
 .book-control {
     display: flex;
@@ -136,7 +225,7 @@ body {
     margin-block-start: 10px;
 }
 
-/* Toggle book read slider */
+/* TOGGLE BOOK READ SLIDER */
 
 .read-toggle-container {
     display: flex;
@@ -189,30 +278,9 @@ input:checked+.slider:before {
     background-color: #fff2d8;
 }
 
-/* Button styling */
 
-button {
-    outline: none;
-    color: var(--color-font-primary);
-    padding-inline: 12px;
-    padding-block: 5px;
-    background: var(--color-btn-bg);
-    transition: 0.2s ease;
-    border-radius: 10px;
-}
 
-button:hover {
-    transform: scale(1.05);
-    background: var(--color-btn-bg-hover);
-    cursor: pointer;
-}
-
-button:active {
-    transform: scale(0.95);
-    background: var(--color-btn-bg-active)
-}
-
-/* Modal Styling */
+/* =========================== ADD NEW BOOK MODAL STYLING ================================ */
 .modal {
     position: fixed;
     top: 0;
@@ -268,10 +336,6 @@ button:active {
     margin-block-end: 10px;
 }
 
-/* .add-book-form {
-    display: flex;
-    flex-direction: column;
-} */
 
 .form-row {
     display: flex;
@@ -283,7 +347,8 @@ button:active {
     font-size: 1.15em;
 }
 
-.form-row input {
+.form-row input,
+#search-input {
     padding-inline: 10px;
     padding-block: 2px;
     color: var(--color-font-primary);

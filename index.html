@@ -33,6 +33,38 @@
                 </div>
                 <button class="btn-new-book" type="button" aria-label="Add New Book">Add</button>
             </div>
+            <div class="sort-search-container">
+                <div class="sort-container-outer">
+                    <h2>Sort</h2>
+                    <div class="sort-container">
+                        <div class="sort-type-container">
+                            <label>
+                                <input type="radio" name="sort-type" value="asc" checked>
+                                Ascending
+                            </label>
+                            <label>
+                                <input type="radio" name="sort-type" value="desc">
+                                Descending
+                            </label>
+                        </div>
+
+                        <div class="sort-buttons">
+                            <button id="btn-sort-title" type="button">Title</button>
+                            <button id="btn-sort-author" type="button">Author</button>
+                            <button id="btn-sort-pages" type="button">Pages</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-container-outer">
+                    <h2>Search</h2>
+                    <div class="search-container">
+                        <button id="search-button" type="button">
+                            <img id="search-icon" src="icons/magnify.svg" alt="icon of a magnifying glass">
+                        </button>
+                        <input id="search-input" type="text">
+                    </div>
+                </div>
+            </div>
             <div class="library-container">
                 <div data-cUUID="${this.id}" class="book-card" role="group" aria-labelledby="title-${this.id}">
                     <div class="book-title-container">
