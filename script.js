@@ -21,30 +21,59 @@ function Book(title, author, pageCount) {
     this.pageCount = pageCount;
     this.read = false;
 
+    this.hasRead = function () {
+        return this.read;
+    }
+
     this.getInfo = function () {
         return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read ? "Has Read" : "Has NOT Read"}`
     }
 
     this.toggleRead = function () {
         this.read = !this.read;
+        return this.read;
     }
 
     this.getHTML = function () {
-        return `
+        let base = `
         <div data-cUUID="${this.id}" class="book-card" role="group" aria-labelledby="title-${this.id}">
-            <h2 class="book-title" id="title-${this.id}">${this.title}</h2>
-            <h3 class="book-author">By ${this.author}</h3>
-            <div class="page-read-container">
-                <p class="page-count">${this.pageCount} pages</p>
-                <p class="has-read" aria-live="polite">${this.read ? "Read" : "Unread"}</p>
-            </div>
+                    <div class="book-title-container">
+                        <h2 class="book-title" id="title-${this.id}">${this.title}</h2>
+                        <img id="book-read-icon-${this.id}" class="${this.read ? "icon-visible" : "icon-hidden"} has-read-icon" src="icons/eye-check-outline.svg"
+                            alt="Icon of eye with a checkmark indicating the book has been read">
+                    </div>
+                    <h3 class="book-author">By ${this.author}</h3>
+                    <div class="page-read-container">
+                        <p class="page-count">${this.pageCount} pages</p>
+                    </div>
 
-            <div class="book-control">
-                <button class="btn-remove-book" type="button" aria-label="Delete ${this.title}">Delete Book</button>
-                <button class="btn-mark-read" type="button" aria-label="Toggle read status for ${this.title}">Toggle Read</button>
-            </div>
-        </div>
+                    <div class="book-control">
+                        <button class="btn-remove-book" type="button" aria-label="Delete ${this.title}"><img class="delete-book-icon"
+                                src="icons/trash-can-outline.svg" alt="Icon of a trash red trash can"></button>
+                        <!-- <button class="btn-mark-read" type="button"
+                            aria-label="Toggle read status for ${this.title}">Toggle Read</button> -->
+
+                        <div class="read-toggle-container">
+                            Read
+                            <label class="switch">
+                                <input type="checkbox" class="read-toggle" ${this.read ? "checked" : ""}/>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
          `
+
+        // const readIcon = base.querySelector(`#book-read-icon-${this.id}`);
+        // const hasRead = this.read;
+        // if (hasRead) {
+        //     readIcon.classList.remove('icon-hidden');
+        //     readIcon.classList.add('icon-visible');
+        // } else {
+        //     readIcon.classList.remove('icon-visible');
+        //     readIcon.classList.add('icon-hidden');
+        // }
+        return base;
     }
 }
 
@@ -68,7 +97,7 @@ const Library = {
         return this.books.findIndex(book => book.id === UUID);
     },
     toggleBookRead: function (UUID) {
-        this.books[this.getIndexById(UUID)].toggleRead();
+        return this.books[this.getIndexById(UUID)].toggleRead();
     },
     populateCardContainer: function () {
         libContainer.innerHTML = "";
@@ -99,12 +128,22 @@ Library.populateCardContainer();
 
 // Event listeners for 'toggle read' and 'delete' buttons on each book
 document.addEventListener('click', (event) => {
-    if (event.target.closest('.btn-mark-read')) {
+    if (event.target.closest('.read-toggle')) {
         const card = event.target.closest('.book-card');
         if (!card) return;
+
         const id = card.dataset.cuuid;
-        Library.toggleBookRead(id);
-        Library.populateCardContainer();
+
+        const readIcon = card.querySelector(`#book-read-icon-${id}`);
+        const hasRead = Library.toggleBookRead(id);
+        if (hasRead) {
+            readIcon.classList.remove('icon-hidden');
+            readIcon.classList.add('icon-visible');
+        } else {
+            readIcon.classList.remove('icon-visible');
+            readIcon.classList.add('icon-hidden');
+        }
+        // Library.populateCardContainer();
 
     } else if (event.target.closest('.btn-remove-book')) {
         console.log("Delete clicked");

@@ -74,6 +74,32 @@ body {
     box-shadow: 0 0 10px 10px var(--color-card-shadow);
 }
 
+.book-title-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.has-read-icon {
+    transition: 0.3s ease;
+    width: 2rem;
+    height: auto;
+}
+
+.icon-hidden {
+    opacity: 0;
+    /* width: 1.3rem;
+    height: auto; */
+}
+
+.icon-visible {
+    opacity: 1;
+}
+
+.delete-book-icon {
+    height: 1.5rem;
+    width: auto;
+}
+
 .page-read-container,
 .book-control {
     display: flex;
@@ -87,6 +113,61 @@ body {
 .book-control {
     margin-block-start: 10px;
 }
+
+/* Toggle book read slider */
+
+.read-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5c3d1e;
+    border: 1px solid var(--color-font-primary);
+    transition: .4s;
+    border-radius: 25px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 19px;
+    width: 19px;
+    left: 3px;
+    bottom: 2px;
+    background-color: #d6c3a6;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #a67c52;
+}
+
+input:checked+.slider:before {
+    transform: translateX(24px);
+    background-color: #fff2d8;
+}
+
+/* Button styling */
 
 button {
     outline: none;
