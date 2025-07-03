@@ -14,7 +14,7 @@ const pagesReadValue = document.querySelector('#pages-read');
 
 
 // Book Object
-function Book(title, author, pageCount) {
+function Book(title, author, pageCount, read) {
     if (!new.target) {
         throw Error("You MUST use 'new' keyword when creating a Book object");
     }
@@ -22,7 +22,7 @@ function Book(title, author, pageCount) {
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
-    this.read = false;
+    this.read = read;
 
     this.hasRead = function () {
         return this.read;
@@ -84,11 +84,12 @@ function Book(title, author, pageCount) {
 // Library Object
 const Library = {
     books: [],
+    sortedFilteredBooks: [],
     pagesRead: 0,
     booksRead: 0,
     booksInLibrary: 0,
-    addBook: function (title, author, pageCount) {
-        this.books.push(new Book(title, author, pageCount));
+    addBook: function (title, author, pageCount, read = false) {
+        this.books.push(new Book(title, author, pageCount, read));
         this.updateLibStats();
     },
     printBooks: function () {
@@ -131,15 +132,42 @@ const Library = {
 }
 
 const starterBooks = [
-    ['Lord of the Rings', 'J.R.R. Tolkien', 684],
-    ['Odd Thomas', 'Dean Koontz', 732],
-    ['Autobiography of A Yogi', 'Parmahansa Yogananda', 1255],
-    ['The Dancing Wu Li Masters', 'Gary Zukav', 422]
-]
+    ['Lord of the Rings', 'J.R.R. Tolkien', 684, true],
+    ['Odd Thomas', 'Dean Koontz', 732, false],
+    ['Autobiography of A Yogi', 'Parmahansa Yogananda', 1255, true],
+    ['The Dancing Wu Li Masters', 'Gary Zukav', 422, true],
+    ['1984', 'George Orwell', 328, false],
+    ['Dune', 'Frank Herbert', 688, true],
+    ['Sapiens: A Brief History of Humankind', 'Yuval Noah Harari', 498, false],
+    ['The Power of Now', 'Eckhart Tolle', 236, true],
+    ['A Brief History of Time', 'Stephen Hawking', 212, false],
+    ['The Alchemist', 'Paulo Coelho', 208, false],
+    ['The Four Agreements', 'Don Miguel Ruiz', 160, true],
+    ['The Art of War', 'Sun Tzu', 273, true],
+    ['Meditations', 'Marcus Aurelius', 304, false],
+    ['The Bhagavad Gita', 'Vyasa', 700, true],
+    ['Crime and Punishment', 'Fyodor Dostoevsky', 671, false],
+    ['The Book of Secrets', 'Deepak Chopra', 288, false],
+    ['Man’s Search for Meaning', 'Viktor E. Frankl', 200, true],
+    ['Becoming Supernatural', 'Dr. Joe Dispenza', 384, true],
+    ['The Tao of Physics', 'Fritjof Capra', 352, false],
+    ['The Road', 'Cormac McCarthy', 287, true],
+    ['Brave New World', 'Aldous Huxley', 311, true],
+    ['Zen and the Art of Motorcycle Maintenance', 'Robert M. Pirsig', 540, false],
+    ['Ishmael', 'Daniel Quinn', 266, false],
+    ['The Untethered Soul', 'Michael A. Singer', 200, true],
+    ['Atomic Habits', 'James Clear', 320, false],
+    ['The War of Art', 'Steven Pressfield', 190, true],
+    ['Think and Grow Rich', 'Napoleon Hill', 238, false],
+    ['The Prophet', 'Kahlil Gibran', 128, true],
+    ['The Doors of Perception', 'Aldous Huxley', 96, false],
+    ['The Seat of the Soul', 'Gary Zukav', 384, true]
+];
+
 
 function buildLibrary() {
     starterBooks.forEach((book) => {
-        Library.addBook(book[0], book[1], book[2]);
+        Library.addBook(book[0], book[1], book[2], book[3]);
     })
 }
 
