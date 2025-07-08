@@ -23,22 +23,23 @@ function Book(title, author, pageCount, read) {
     this.author = author;
     this.pageCount = pageCount;
     this.read = read;
+}
 
-    this.hasRead = function () {
-        return this.read;
-    }
+Book.prototype.hasRead = function () {
+    return this.read;
+}
 
-    this.getInfo = function () {
-        return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read ? "Has Read" : "Has NOT Read"}`
-    }
+Book.prototype.getInfo = function () {
+    return `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.read ? "Has Read" : "Has NOT Read"}`
+}
 
-    this.toggleRead = function () {
-        this.read = !this.read;
-        return this.read;
-    }
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+    return this.read;
+}
 
-    this.getHTML = function () {
-        let base = `
+Book.prototype.getHTML = function () {
+    let base = `
         <div data-cUUID="${this.id}" class="book-card" role="group" aria-labelledby="title-${this.id}">
                     <div class="book-title-container">
                         <h2 class="book-title" id="title-${this.id}">${this.title}</h2>
@@ -67,17 +68,7 @@ function Book(title, author, pageCount, read) {
                 </div>
          `
 
-        // const readIcon = base.querySelector(`#book-read-icon-${this.id}`);
-        // const hasRead = this.read;
-        // if (hasRead) {
-        //     readIcon.classList.remove('icon-hidden');
-        //     readIcon.classList.add('icon-visible');
-        // } else {
-        //     readIcon.classList.remove('icon-visible');
-        //     readIcon.classList.add('icon-hidden');
-        // }
-        return base;
-    }
+    return base;
 }
 
 
